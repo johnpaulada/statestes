@@ -27,7 +27,7 @@ function varianceBuilder(mean) {
     const variance = numbers => {
       const sum_diff_squares = numbers.reduce((acc, number) => {
         return acc + Math.pow(number - mean_val, 2)
-      });
+      }, 0);
 
       return sum_diff_squares / numbers.length;
     };
