@@ -65,6 +65,20 @@ exports.mean = mean;
 exports.variance = variance;
 exports.standardDeviation = standardDeviation;
 });
+___scope___.file("inference.js", function(exports, require, module, __filename, __dirname){
+
+'use strict';
+
+var _basic = require('./basic');
+
+function pairedTTest(numbers) {
+  var twoTailed = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+  return (0, _basic.standardDeviation)(numbers);
+}
+
+pairedTTest([2, 2, 2]);
+});
 });
 
 FuseBox.import("default/*.js");
