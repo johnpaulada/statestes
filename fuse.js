@@ -14,6 +14,8 @@ const fuse = FuseBox.init({
 });
 
 fuse.bundle("statestes")
-  .instructions(">index.js");
+  .instructions(">index.js")
+  .watch()
+  .hmr();
 
 fuse.run();

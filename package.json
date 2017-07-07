@@ -1,4 +1,21 @@
 {
+  "name": "statestes",
+  "version": "1.0.0",
+  "description": "A simple javascript statistics library. Statistics for n00bz.",
+  "author": "John Paul Ada <johnpaulada@gmail.com>",
+  "main": "dist/statestes.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnpaulada/statestes"
+  },
+    "bugs": {
+    "url": "https://github.com/johnpaulada/statestes/issues"
+  },
+  "keywords": [
+    "statestes",
+    "statistics",
+    "javascript"
+  ],
   "devDependencies": {
     "babel-core": "^6.25.0",
     "babel-jest": "^20.0.3",
@@ -8,8 +25,9 @@
     "jest": "^20.0.4"
   },
   "scripts": {
-    "build": "node fuse.js",
+    "start": "node fuse.js",
     "test": "jest",
     "docs": "esdoc"
-  }
+  },
+  "license": "MIT"
 }
