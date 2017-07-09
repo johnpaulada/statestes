@@ -9,6 +9,16 @@ function sum(numbers) {
 }
 
 /**
+ * Get the square of a number.
+ *
+ * @param {Number} number - Number to be squared
+ * @returns {Number} - Square of the number
+ */
+function square(number) {
+  return Math.pow(number, 2);
+}
+
+/**
  * Get the mean of an array of numbers
  *
  * @param {Array} numbers - An array of numbers
@@ -50,5 +60,5 @@ function standardDeviation(numbers) {
 }
 
 export {
-  sum, mean, variance, standardDeviation
+  sum, square, mean, variance, standardDeviation
 }

@@ -1,5 +1,8 @@
-import { pairedTTest } from './inference/inference';
+import { pairedTValue, independentTValue, pairedTTest, independentTTest } from './inference/inference';
 
 export {
-  pairedTTest
+  pairedTValue,
+  independentTValue,
+  pairedTTest,
+  independentTTest
 };

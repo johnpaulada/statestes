@@ -1,4 +1,5 @@
 // TODO: Extract functions from this function
+// TODO: test this
 
 export const crossreduce = (arrays, reducer) => {
   const arrayLength = arrays[0].length;
