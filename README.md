@@ -20,7 +20,7 @@ npm install statestes
 #### Import in code
 
 ```javascript
-var statestes = require('statestes');
+var statestes = require('statestes').statestes;
 ```
 
 ### Install using `yarn`:
@@ -32,7 +32,7 @@ yarn add statestes
 #### Import in code
 
 ```javascript
-var statestes = require('statestes');
+var statestes = require('statestes').statestes;
 ```
 
 ### Install using the built library.
@@ -100,7 +100,7 @@ Each change to the code will rebuild the code.
 ## Versioning
 
 - 0.1.0 - Implemented paired samples t-test
-- 0.1.1 - Update README
+- 0.1.1 - 0.1.4 - Updated README
 
 ## Tests
 
