@@ -1,6 +1,6 @@
 {
   "name": "statestes",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple javascript statistics library. Statistics for n00bz.",
   "author": "John Paul Ada <johnpaulada@gmail.com>",
   "main": "dist/statestes.min.js",
@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/johnpaulada/statestes"
   },
-    "bugs": {
+  "bugs": {
     "url": "https://github.com/johnpaulada/statestes/issues"
   },
   "keywords": [

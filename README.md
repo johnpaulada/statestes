@@ -17,7 +17,7 @@ A simple Javascript library for statistical analysis
 npm install statestes
 ```
 
-After installing, do:
+#### Import in code
 
 ```javascript
 var statestes = require('statestes');
@@ -29,7 +29,7 @@ var statestes = require('statestes');
 yarn add statestes
 ```
 
-After installing, do:
+#### Import in code
 
 ```javascript
 var statestes = require('statestes');
@@ -37,11 +37,27 @@ var statestes = require('statestes');
 
 ### Install using the built library.
 
-Copy `statestes.min.js` from `dist/statestes.min.js`.
+Copy `statestes.min.js` from `dist/statestes.min.js` to a `lib` folder.
+
+#### Import in code
+```html
+<script src="lib/statestes.min.js"></script>
+```
+
+This will expose a `statestes` variable which you can access the functions from.
 
 ### Include using CDN
 
 Coming soon.
+
+### Using a function in the library:
+
+Just reference a function using the dot notation.
+For example, to use the `sum` function, you can do:
+
+```javascript
+  statestes.sum([1, 2, 3]); // 6
+```
 
 ## Developing
 
