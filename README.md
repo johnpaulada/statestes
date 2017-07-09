@@ -11,95 +11,91 @@ A simple Javascript library for statistical analysis
 
 ## Installing / Getting started
 
-A quick introduction of the minimal setup you need to get a hello world up &
-running.
+### Install using `npm`:
 
 ```shell
-commands here
+npm install statestes
 ```
 
-Here you should say what actually happens when you execute the code above.
+After installing, do:
+
+```javascript
+const statestes = require('statestes');
+```
+
+### Install using `yarn`:
+
+```shell
+yarn add statestes
+```
+
+After installing, do:
+
+```javascript
+const statestes = require('statestes');
+```
+
+### Install using the built library.
+
+Copy `statestes.min.js` from `dist/statestes.min.js`.
+
+### Include using CDN
+
+Coming soon.
 
 ## Developing
 
 ### Built With
-List main libraries, frameworks used including versions (React, Angular etc...)
+This project has no dependencies.
 
 ### Prerequisites
-What is needed to set up the dev environment. For instance, global dependencies or any other tools. include download links.
+The dev prerequisites for this project are:
 
+- Babel
+- Fusebox
+- Jest
 
 ### Setting up Dev
 
-Here's a brief intro about what a developer must do in order to start developing
-the project further:
+To start developing, run:
 
 ```shell
-git clone https://github.com/your/your-project.git
+git clone https://github.com/johnpaulada/statestes.git
 cd your-project/
-packagemanager install
+yarn
 ```
 
-And state what happens step-by-step. If there is any virtual environment, local server or database feeder needed, explain here.
+This will:
+1. Clone the project
+2. Get you into the project
+3. Install the dev dependencies
+4.
 
 ### Building
 
-If your project needs some additional steps for the developer to build the
-project after some code changes, state them here. for example:
+To build the project, run:
 
 ```shell
-./configure
-make
-make install
+npm start
 ```
 
-Here again you should state what actually happens when the code above gets
-executed.
-
-### Deploying / Publishing
-give instructions on how to build and release a new version
-In case there's some step you have to take that publishes this project to a
-server, this is the right time to state it.
-
-```shell
-packagemanager deploy your-project -s server.com -u username -p password
-```
-
-And again you'd need to tell what the previous code actually does.
+This command will build the code to `dist/statestes.min.js`.
+Each change to the code will rebuild the code.
 
 ## Versioning
 
-We can maybe use [SemVer](http://semver.org/) for versioning. For the versions available, see the [link to tags on this repository](/tags).
-
-
-## Configuration
-
-Here you should write what are all of the configurations a user can enter when
-using the project.
+- 0.1.0 - Implemented paired samples t-test
+- 0.1.1 - Update README
 
 ## Tests
 
-Describe and show how to run the tests with code examples.
-Explain what these tests test and why.
+I use Jest to test this library. To run the tests, run:
 
 ```shell
-Give an example
+npm test
 ```
 
-## Style guide
-
-Explain your code style and show how to check it.
-
-## Api Reference
-
-If the api is external, link to api documentation. If not describe your api including authentication methods as well as explaining all the endpoints with their required parameters.
-
-
-## Database
-
-Explaining what database (and version) has been used. Provide download links.
-Documents your database design and schemas, relations etc...
+These tests test the main statistical functions.
 
 ## Licensing
-
-State what the license is and how to find the text version of the license.
+MIT
