@@ -101,7 +101,7 @@ Each change to the code will rebuild the code.
 
 - 0.1.0 - Implemented paired samples t-test
 - 0.1.1 - 0.1.4 - Updated README
-- 0.1.5 - 0.1.6 - Implemented independent samples t-test
+- 0.2.0 - Implemented independent samples t-test
 
 ## Tests
 
