@@ -91,6 +91,7 @@ function independentTValue(numbers, twoTailed = true) {
  * Check if paired t-test result is significant.
  *
  * @param {Array} numbers - An array of numbers
+ * @param {Array} marginOfError - The margin of error
  * @param {Array} twoTailed - Is two tailed test
  * @returns {Number} - The t value
  */
@@ -107,6 +108,7 @@ function pairedTTest(numbers, marginOfError = 0.05, twoTailed = true) {
  * Check if independent t-test result is significant.
  *
  * @param {Array} numbers - An array of numbers
+ * @param {Array} marginOfError - The margin of error
  * @param {Array} twoTailed - Is two tailed test
  * @returns {Number} - The t value
  */
