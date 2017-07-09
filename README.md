@@ -20,7 +20,7 @@ npm install statestes
 After installing, do:
 
 ```javascript
-const statestes = require('statestes');
+var statestes = require('statestes');
 ```
 
 ### Install using `yarn`:
@@ -32,7 +32,7 @@ yarn add statestes
 After installing, do:
 
 ```javascript
-const statestes = require('statestes');
+var statestes = require('statestes');
 ```
 
 ### Install using the built library.
@@ -51,9 +51,9 @@ This project has no dependencies.
 ### Prerequisites
 The dev prerequisites for this project are:
 
-- Babel
-- Fusebox
-- Jest
+- [Babel](https://babeljs.io/) - for transpiling ES6 to ES5 code.
+- [Fusebox](http://fuse-box.org/) - a faster and simpler module bundler.
+- [Jest](https://facebook.github.io/jest/) - Facebook's testing framework.
 
 ### Setting up Dev
 
@@ -69,7 +69,6 @@ This will:
 1. Clone the project
 2. Get you into the project
 3. Install the dev dependencies
-4.
 
 ### Building
 
