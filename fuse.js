@@ -1,21 +1,21 @@
-const { FuseBox, BabelPlugin, UglifyJSPlugin } = require("fuse-box");
+const { FuseBox, BabelPlugin, UglifyJSPlugin } = require('fuse-box')
 
 const fuse = FuseBox.init({
-  homeDir: "src",
-  output: "dist/$name.min.js",
-  package:{
-    name: "statestes",
-    main: "index.ts",
+  homeDir: 'src',
+  output: 'dist/$name.min.js',
+  package: {
+    name: 'statestes',
+    main: 'index.ts'
   },
-  globals: { "statestes": "statestes" },
+  globals: { 'statestes': 'statestes' },
   plugins: [
-    [BabelPlugin({ presets: ["es2015"] }), UglifyJSPlugin()]
+    [BabelPlugin({ presets: ['es2015'] }), UglifyJSPlugin()]
   ]
-});
+})
 
-fuse.bundle("statestes")
-  .instructions(">index.js")
+fuse.bundle('statestes')
+  .instructions('>index.js')
   .watch()
-  .hmr();
+  .hmr()
 
-fuse.run();
+fuse.run()
