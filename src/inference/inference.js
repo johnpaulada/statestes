@@ -93,15 +93,16 @@ function independentTValue (numbers, twoTailed = true) {
  * @param {Array} numbers - An array of numbers
  * @param {Array} marginOfError - The margin of error
  * @param {Array} twoTailed - Is two tailed test
- * @returns {Number} - The t value
+ * @returns {Object} - Contains calculated t, critical t, and significance.
  */
 function pairedTTest (numbers, marginOfError = 0.05, twoTailed = true) {
   const GROUP1_INDEX = 0
   const df = numbers[GROUP1_INDEX].length - 1
   const tCalc = pairedTValue(numbers, twoTailed)
   const tCrit = getTCrit(df, marginOfError)
-
-  return Math.abs(tCalc) > tCrit
+  const isSignificant = Math.abs(tCalc) > tCrit;
+  
+  return {calc: tCalc, crit: tCrit, isSignificant};
 }
 
 /**
@@ -110,7 +111,7 @@ function pairedTTest (numbers, marginOfError = 0.05, twoTailed = true) {
  * @param {Array} numbers - An array of numbers
  * @param {Array} marginOfError - The margin of error
  * @param {Array} twoTailed - Is two tailed test
- * @returns {Number} - The t value
+ * @returns {Object} - Contains calculated t, critical t, and significance.
  */
 function independentTTest (numbers, marginOfError = 0.05, twoTailed = true) {
   const GROUP1_INDEX = 0
@@ -118,8 +119,9 @@ function independentTTest (numbers, marginOfError = 0.05, twoTailed = true) {
   const df = numbers[GROUP1_INDEX].length - 1 + numbers[GROUP2_INDEX].length
   const tCalc = independentTValue(numbers, twoTailed)
   const tCrit = getTCrit(df, marginOfError)
-
-  return Math.abs(tCalc) > tCrit
+  const isSignificant = Math.abs(tCalc) > tCrit;
+  
+  return {calc: tCalc, crit: tCrit, isSignificant};
 }
 
 export {

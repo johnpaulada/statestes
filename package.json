@@ -1,6 +1,6 @@
 {
   "name": "statestes",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A simple javascript statistics library. Statistics for n00bz.",
   "author": "John Paul Ada <johnpaulada@gmail.com>",
   "main": "dist/statestes.min.js",
@@ -30,5 +30,6 @@
     "test": "jest",
     "docs": "esdoc"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {}
 }

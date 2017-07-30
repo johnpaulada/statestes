@@ -99,12 +99,6 @@ npm start
 This command will build the code to `dist/statestes.min.js`.
 Each change to the code will rebuild the code.
 
-## Versioning
-
-- 0.1.0 - Implemented paired samples t-test
-- 0.1.1 - 0.1.4 - Updated README
-- 0.1.5 - 0.1.6 - Implemented independent samples t-test
-
 ## Tests
 
 I use Jest to test this library. To run the tests, run:
