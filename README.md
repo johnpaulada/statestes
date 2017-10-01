@@ -9,6 +9,8 @@ A simple Javascript library for statistical analysis
 [![forthebadge](http://forthebadge.com/images/badges/uses-js.svg)](http://forthebadge.com)
 [![forthebadge](http://forthebadge.com/images/badges/built-with-resentment.svg)](http://forthebadge.com)
 
+[![JavaScript Style Guide](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
+
 ## Installing / Getting started
 
 ### Install using `npm`:
@@ -96,12 +98,6 @@ npm start
 
 This command will build the code to `dist/statestes.min.js`.
 Each change to the code will rebuild the code.
-
-## Versioning
-
-- 0.1.0 - Implemented paired samples t-test
-- 0.1.1 - 0.1.4 - Updated README
-- 0.2.0 - Implemented independent samples t-test
 
 ## Tests
 

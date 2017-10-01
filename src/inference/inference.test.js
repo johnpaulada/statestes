@@ -1,1 +1,1 @@
-import { pairedTValue, independentTValue } from './inference.js';
+import { pairedTValue, independentTValue } from './inference.js'

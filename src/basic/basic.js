@@ -4,8 +4,8 @@
  * @param {Array} numbers - An array of numbers
  * @returns {Number}
  */
-function sum(numbers) {
-  return numbers.reduce((acc, number) => acc + number);
+function sum (numbers) {
+  return numbers.reduce((acc, number) => acc + number)
 }
 
 /**
@@ -14,8 +14,8 @@ function sum(numbers) {
  * @param {Number} number - Number to be squared
  * @returns {Number} - Square of the number
  */
-function square(number) {
-  return Math.pow(number, 2);
+function square (number) {
+  return Math.pow(number, 2)
 }
 
 /**
@@ -24,19 +24,19 @@ function square(number) {
  * @param {Array} numbers - An array of numbers
  * @returns {Number}
  */
-function mean(numbers) {
-  return sum(numbers) / numbers.length;
+function mean (numbers) {
+  return sum(numbers) / numbers.length
 }
 
-function sumOfSquaresOfDifference(numbers) {
-  const mean_val = mean(numbers);
+function sumOfSquaresOfDifference (numbers) {
+  const mean_val = mean(numbers)
 
   return numbers.reduce((acc, number) => {
-    const difference = number - mean_val;
-    const squared = Math.pow(difference, 2);
+    const difference = number - mean_val
+    const squared = Math.pow(difference, 2)
 
-    return acc + Math.pow(number - mean_val, 2);
-  }, 0);
+    return acc + Math.pow(number - mean_val, 2)
+  }, 0)
 }
 
 /**
@@ -45,8 +45,8 @@ function sumOfSquaresOfDifference(numbers) {
  * @param {Array} numbers - An array of numbers
  * @returns {Number}
  */
-function variance(numbers) {
-  return sumOfSquaresOfDifference(numbers) / numbers.length;
+function variance (numbers) {
+  return sumOfSquaresOfDifference(numbers) / numbers.length
 }
 
 /**
@@ -55,8 +55,8 @@ function variance(numbers) {
  * @param {Array} numbers - An array of numbers
  * @returns {Number}
  */
-function standardDeviation(numbers) {
-  return sumOfSquaresOfDifference(numbers) / numbers.length;
+function standardDeviation (numbers) {
+  return sumOfSquaresOfDifference(numbers) / numbers.length
 }
 
 export {
