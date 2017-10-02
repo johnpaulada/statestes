@@ -124,7 +124,45 @@ function independentTTest (numbers, marginOfError = 0.05, twoTailed = true) {
   return {calc: tCalc, crit: tCrit, isSignificant};
 }
 
+function pearsonR (leftData, rightData) {
+  if (leftData.length !== rightData.length) {
+    throw 'Data arrays with different sizes';
+  }
+
+  const data = [];
+  const dataSize = leftData.length;
+  for (let i = 0; i < dataSize; i++) {
+    data.push({
+      right: rightData[i],
+      left: leftData[i]
+    });
+  }
+
+  const leftSum = leftData.reduce((sum, current) => current + sum, 0);
+  console.log('Left data sum:', leftSum);
+  const rightSum = rightData.reduce((sum, current) => current + sum, 0);
+  console.log('Right data sum:', rightSum);
+  const multipliedSum = data.reduce((sum, current) => current.left * current.right + sum, 0);
+  console.log('Multiplied data sum:', multipliedSum);
+  const squaredLeftSum = leftData.reduce((sum, current) => Math.pow(current, 2) + sum, 0);
+  console.log('Left squared data sum:', squaredLeftSum);
+  const squaredRightSum = rightData.reduce((sum, current) => Math.pow(current, 2) + sum, 0);
+  console.log('Right squared data sum:', squaredRightSum);
+
+  const numerator = multipliedSum - (leftSum * rightSum / dataSize);
+  console.log('Numerator:', numerator);
+  const denominator = Math.sqrt(squaredLeftSum - Math.pow(leftSum, 2) / dataSize) * Math.sqrt(squaredRightSum - Math.pow(rightSum, 2) / dataSize);  
+  console.log('Denominator:', denominator);
+
+  if (!denominator) {
+    throw 'No correlated data';
+  }
+
+  return numerator / denominator;
+}
+
 export {
+  pearsonR,
   pairedTValue,
   independentTValue,
   pairedTTest,
