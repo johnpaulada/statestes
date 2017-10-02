@@ -5,7 +5,7 @@ test('Adding 1, 2, and 3 equals 6', () => {
 })
 
 test('Squared adding 1, 2 and 3 equals 14', () => {
-  expect(squaredSum([1, 2, 3])).toBe(14)
+  expect(squaredSum([1, 2, 3])).toBe(14);
 })
 
 test('Mean of 1, 2, and 3 equals 2', () => {
