@@ -1,4 +1,4 @@
-import { sum, square, standardDeviation } from '../basic/basic'
+import { sum, square, squaredSum, standardDeviation } from '../basic/basic'
 import { crossreduce } from '../util/crossreduce'
 import { interpolate } from '../util/interpolate'
 import t_table from '../tables/t-table.js'
@@ -143,14 +143,6 @@ function joinLeftRightData(leftData, rightData) {
   return data;
 }
 
-function arraySum (array) {
-  return array.reduce((sum, current) => current + sum, 0)
-}
-
-function arraySquaredSum(array) {
-  return array.reduce((sum, current) => Math.pow(current, 2) + sum, 0);
-}
-
 function getPearsonNumerator(data, leftSum, rightSum) {
   const multipliedSum = data.reduce((sum, current) => current.left * current.right + sum, 0);
   // console.log('Multiplied data sum:', multipliedSum);
@@ -159,7 +151,7 @@ function getPearsonNumerator(data, leftSum, rightSum) {
 }
 
 function getPearsonDenominator(data, leftSum, rightSum, squaredLeftSum, squaredRightSum) {
-  return Math.sqrt(squaredLeftSum - Math.pow(leftSum, 2) / data.length) * Math.sqrt(squaredRightSum - Math.pow(rightSum, 2) / data.length); 
+  return Math.sqrt(squaredLeftSum - square(leftSum) / data.length) * Math.sqrt(squaredRightSum - square(rightSum) / data.length);
 }
 
 /**
@@ -171,13 +163,13 @@ function getPearsonDenominator(data, leftSum, rightSum, squaredLeftSum, squaredR
  * @returns {Number} The pearson correlation between the two data arrays (number between -1 and 1)
  */
 function pearsonR (leftData, rightData) {
-  const leftSum = arraySum(leftData);
+  const leftSum = sum(leftData);
   // console.log('Left data sum:', leftSum);
-  const rightSum = arraySum(rightData);
+  const rightSum = sum(rightData);
   // console.log('Right data sum:', rightSum);
-  const squaredLeftSum = arraySquaredSum(leftData);
+  const squaredLeftSum = squaredSum(leftData);
   // console.log('Left squared data sum:', squaredLeftSum);
-  const squaredRightSum = arraySquaredSum(rightData);
+  const squaredRightSum = squaredSum(rightData);
   // console.log('Right squared data sum:', squaredRightSum);
   const data = joinLeftRightData(leftData, rightData);
 
