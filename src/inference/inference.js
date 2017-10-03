@@ -1,4 +1,4 @@
-import { sum, square, squaredSum, standardDeviation } from '../basic/basic';
+import { sum, square, squaredSum } from '../basic/basic';
 import { crossreduce } from '../util/crossreduce';
 import { interpolate } from '../util/interpolate';
 import tTable from '../tables/t-table';
