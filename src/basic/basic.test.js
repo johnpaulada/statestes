@@ -1,4 +1,4 @@
-import { sum, mean } from './basic.js';
+import { sum, mean } from './basic';
 
 test('Adding 1, 2, and 3 equals 6', () => {
   expect(sum([1, 2, 3])).toBe(6);

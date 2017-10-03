@@ -1,5 +1,5 @@
 const {
-  FuseBox, QuantumPlugin, BabelPlugin, UglifyJSPlugin, WebIndexPlugin,
+  FuseBox, BabelPlugin, UglifyJSPlugin,
 } = require('fuse-box');
 
 const fuse = FuseBox.init({

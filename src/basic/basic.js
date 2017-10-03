@@ -29,13 +29,13 @@ function mean(numbers) {
 }
 
 function sumOfSquaresOfDifference(numbers) {
-  const mean_val = mean(numbers);
+  const meanVal = mean(numbers);
 
   return numbers.reduce((acc, number) => {
-    const difference = number - mean_val;
-    const squared = Math.pow(difference, 2);
+    const difference = number - meanVal;
+    const squared = square(difference);
 
-    return acc + Math.pow(number - mean_val, 2);
+    return acc + square(number - meanVal);
   }, 0);
 }
 

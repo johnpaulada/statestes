@@ -1,28 +1,28 @@
-import { sum, square, standardDeviation } from '../basic/basic';
+import { sum, square } from '../basic/basic';
 import { crossreduce } from '../util/crossreduce';
 import { interpolate } from '../util/interpolate';
-import t_table from '../tables/t-table.js';
+import tTable from '../tables/t-table';
 
 // TODO: Test this
 function getTCrit(df, marginOfError = 0.05) {
   const margin = `${marginOfError}`;
 
   if (df > 30 && df < 40) {
-    return interpolate(df, 30, 40, t_table[margin]['30'], t_table[margin]['40']);
+    return interpolate(df, 30, 40, tTable[margin]['30'], tTable[margin]['40']);
   } else if (df > 40 && df < 60) {
-    return interpolate(df, 40, 60, t_table[margin]['40'], t_table[margin]['60']);
+    return interpolate(df, 40, 60, tTable[margin]['40'], tTable[margin]['60']);
   } else if (df > 60 && df < 120) {
-    return interpolate(df, 60, 120, t_table[margin]['60'], t_table[margin]['120']);
+    return interpolate(df, 60, 120, tTable[margin]['60'], tTable[margin]['120']);
   } else if (df > 120) {
-    return t_table[margin].Infinity;
+    return tTable[margin].Infinity;
   }
 
-  return t_table[margin][df];
+  return tTable[margin][df];
 }
 
 // TODO: Test this
 function getMM({ squaredSum, sumSquared, size }) {
-  return squaredSum - sumSquared / size;
+  return squaredSum - (sumSquared / size);
 }
 
 // TODO: Make function cleaner
@@ -39,9 +39,9 @@ function pairedTValue(numbers, twoTailed = true) {
   const diffSquareds = diffs.map(square);
   const diffSum = sum(diffs);
   const diffSquaredSum = sum(diffSquareds);
-  const diffSumSquared = Math.pow(diffSum, 2);
+  const diffSumSquared = square(diffSum);
   const numerator = diffSum / sampleSize;
-  const rootNumerator = diffSquaredSum - diffSumSquared / sampleSize;
+  const rootNumerator = diffSquaredSum - (diffSumSquared / sampleSize);
   const rootDenominator = sampleSize * (sampleSize - 1);
   const denominator = Math.sqrt(rootNumerator / rootDenominator);
   const t = numerator / denominator;
@@ -80,7 +80,7 @@ function independentTValue(numbers, twoTailed = true) {
 
   const numerator = group1.mean - group2.mean;
   const rootTerm1 = (group1.mm + group2.mm) / (group1.size + group2.size - 2);
-  const rootTerm2 = 1 / group1.size + 1 / group2.size;
+  const rootTerm2 = (1 / group1.size) + (1 / group2.size);
   const denominator = Math.sqrt(rootTerm1 * rootTerm2);
   const t = numerator / denominator;
 
@@ -126,12 +126,12 @@ function independentTTest(numbers, marginOfError = 0.05, twoTailed = true) {
 
 function pearsonR(leftData, rightData) {
   if (leftData.length !== rightData.length) {
-    throw 'Data arrays with different sizes';
+    throw new Error('Data arrays with different sizes');
   }
 
   const data = [];
   const dataSize = leftData.length;
-  for (let i = 0; i < dataSize; i++) {
+  for (let i = 0; i < dataSize; i += 1) {
     data.push({
       right: rightData[i],
       left: leftData[i],
@@ -155,7 +155,7 @@ function pearsonR(leftData, rightData) {
   console.log('Denominator:', denominator);
 
   if (!denominator) {
-    throw 'No correlated data';
+    throw new Error('No correlated data');
   }
 
   return numerator / denominator;

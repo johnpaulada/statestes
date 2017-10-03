@@ -1,4 +1,4 @@
-import { pairedTValue, independentTValue, pearsonR } from './inference.js';
+import { pearsonR } from './inference';
 
 test('Pearson R small array', () => {
   expect(pearsonR(
