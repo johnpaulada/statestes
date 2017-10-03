@@ -2,17 +2,17 @@
 // TODO: test this
 
 export const crossreduce = (arrays, reducer) => {
-  const arrayLength = arrays[0].length;
-  const arrayCount = arrays.length;
-  const mapped = [];
+  const arrayLength = arrays[0].length
+  const arrayCount = arrays.length
+  const mapped = []
 
   for (let i = 0; i < arrayLength; i += 1) {
-    const slice = [];
+    const slice = []
     for (let j = 0; j < arrayCount; j += 1) {
-      slice.push(arrays[j][i]);
+      slice.push(arrays[j][i])
     }
-    mapped.push(slice.reduce(reducer));
+    mapped.push(slice.reduce(reducer))
   }
 
-  return mapped;
-};
+  return mapped
+}
