@@ -1,4 +1,4 @@
-import { sum, square } from '../basic/basic';
+import { sum, square, squaredSum, standardDeviation } from '../basic/basic';
 import { crossreduce } from '../util/crossreduce';
 import { interpolate } from '../util/interpolate';
 import tTable from '../tables/t-table';
@@ -124,39 +124,63 @@ function independentTTest(numbers, marginOfError = 0.05, twoTailed = true) {
   return { calc: tCalc, crit: tCrit, isSignificant };
 }
 
-function pearsonR(leftData, rightData) {
+function joinLeftRightData(leftData, rightData) {
   if (leftData.length !== rightData.length) {
     throw new Error('Data arrays with different sizes');
   }
 
   const data = [];
-  const dataSize = leftData.length;
-  for (let i = 0; i < dataSize; i += 1) {
+  for (let i = 0; i < leftData.length; i++) {
+    if (typeof leftData[i] !== 'number' || typeof rightData[i] !== 'number') {
+      throw 'Data arrays must contain only numbers';
+    }
+
     data.push({
       right: rightData[i],
       left: leftData[i],
     });
   }
+  return data;
+}
 
-  const leftSum = leftData.reduce((sum, current) => current + sum, 0);
-  console.log('Left data sum:', leftSum);
-  const rightSum = rightData.reduce((sum, current) => current + sum, 0);
-  console.log('Right data sum:', rightSum);
+function getPearsonNumerator(data, leftSum, rightSum) {
   const multipliedSum = data.reduce((sum, current) => current.left * current.right + sum, 0);
-  console.log('Multiplied data sum:', multipliedSum);
-  const squaredLeftSum = leftData.reduce((sum, current) => Math.pow(current, 2) + sum, 0);
-  console.log('Left squared data sum:', squaredLeftSum);
-  const squaredRightSum = rightData.reduce((sum, current) => Math.pow(current, 2) + sum, 0);
-  console.log('Right squared data sum:', squaredRightSum);
+  // console.log('Multiplied data sum:', multipliedSum);
 
-  const numerator = multipliedSum - (leftSum * rightSum / dataSize);
-  console.log('Numerator:', numerator);
-  const denominator = Math.sqrt(squaredLeftSum - Math.pow(leftSum, 2) / dataSize) * Math.sqrt(squaredRightSum - Math.pow(rightSum, 2) / dataSize);
-  console.log('Denominator:', denominator);
+  return multipliedSum - (leftSum * rightSum / data.length);
+}
 
+function getPearsonDenominator(data, leftSum, rightSum, squaredLeftSum, squaredRightSum) {
+  return Math.sqrt(squaredLeftSum - square(leftSum) / data.length) * Math.sqrt(squaredRightSum - square(rightSum) / data.length);
+}
+
+/**
+ * Calculate the Pearson R correlation between the two data arrays
+ * The data array must be the same size
+ *
+ * @param {Array} leftData The left array of numbers
+ * @param {Array} rightData The right array of numbers
+ * @returns {Number} The pearson correlation between the two data arrays (number between -1 and 1)
+ */
+function pearsonR(leftData, rightData) {
+  const leftSum = sum(leftData);
+  // console.log('Left data sum:', leftSum);
+  const rightSum = sum(rightData);
+  // console.log('Right data sum:', rightSum);
+  const squaredLeftSum = squaredSum(leftData);
+  // console.log('Left squared data sum:', squaredLeftSum);
+  const squaredRightSum = squaredSum(rightData);
+  // console.log('Right squared data sum:', squaredRightSum);
+  const data = joinLeftRightData(leftData, rightData);
+
+  const denominator = getPearsonDenominator(data, leftSum, rightSum, squaredLeftSum, squaredRightSum);
+  // console.log('Denominator:', denominator);
   if (!denominator) {
     throw new Error('No correlated data');
   }
+
+  const numerator = getPearsonNumerator(data, leftSum, rightSum);
+  // console.log('Numerator:', numerator);
 
   return numerator / denominator;
 }

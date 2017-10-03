@@ -49,8 +49,11 @@ Copy `statestes.min.js` from `dist/statestes.min.js` to a `lib` folder.
 This will expose a `statestes` variable which you can access the functions from.
 
 ### Include using CDN
+```html
+<script src="https://cdn.jsdelivr.net/npm/statestes/dist/statestes.min.js"></script>
+```
 
-Coming soon.
+The script can also be included from a CDN for faster and likely cached delivery, it can that be used through the `statestes` variable as described below.
 
 ### Using a function in the library:
 
