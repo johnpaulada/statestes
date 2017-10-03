@@ -19,6 +19,16 @@ function square (number) {
 }
 
 /**
+ * Get the sum of the squares of an array of numbers
+ *
+ * @param {Array} numbers - An array of numbers
+ * @returns {Number}
+ */
+function squaredSum (numbers) {
+  return numbers.reduce((acc, number) => acc + square(number), 0);
+}
+
+/**
  * Get the mean of an array of numbers
  *
  * @param {Array} numbers - An array of numbers
@@ -60,5 +70,10 @@ function standardDeviation (numbers) {
 }
 
 export {
-  sum, square, mean, variance, standardDeviation
+  sum,
+  square,
+  squaredSum,
+  mean,
+  variance,
+  standardDeviation
 }
