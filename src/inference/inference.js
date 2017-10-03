@@ -1,28 +1,28 @@
-import { sum, square, squaredSum, standardDeviation } from '../basic/basic'
+import { sum, square, squaredSum } from '../basic/basic'
 import { crossreduce } from '../util/crossreduce'
 import { interpolate } from '../util/interpolate'
-import t_table from '../tables/t-table.js'
+import tTable from '../tables/t-table'
 
 // TODO: Test this
 function getTCrit (df, marginOfError = 0.05) {
   const margin = `${marginOfError}`
 
   if (df > 30 && df < 40) {
-    return interpolate(df, 30, 40, t_table[margin]['30'], t_table[margin]['40'])
+    return interpolate(df, 30, 40, tTable[margin]['30'], tTable[margin]['40'])
   } else if (df > 40 && df < 60) {
-    return interpolate(df, 40, 60, t_table[margin]['40'], t_table[margin]['60'])
+    return interpolate(df, 40, 60, tTable[margin]['40'], tTable[margin]['60'])
   } else if (df > 60 && df < 120) {
-    return interpolate(df, 60, 120, t_table[margin]['60'], t_table[margin]['120'])
+    return interpolate(df, 60, 120, tTable[margin]['60'], tTable[margin]['120'])
   } else if (df > 120) {
-    return t_table[margin]['Infinity']
+    return tTable[margin].Infinity
   }
 
-  return t_table[margin][df]
+  return tTable[margin][df]
 }
 
 // TODO: Test this
-function getMM ({squaredSum, sumSquared, size}) {
-  return squaredSum - sumSquared / size
+function getMM ({ squaredSum, sumSquared, size }) {
+  return squaredSum - (sumSquared / size)
 }
 
 // TODO: Make function cleaner
@@ -39,9 +39,9 @@ function pairedTValue (numbers, twoTailed = true) {
   const diffSquareds = diffs.map(square)
   const diffSum = sum(diffs)
   const diffSquaredSum = sum(diffSquareds)
-  const diffSumSquared = Math.pow(diffSum, 2)
+  const diffSumSquared = square(diffSum)
   const numerator = diffSum / sampleSize
-  const rootNumerator = diffSquaredSum - diffSumSquared / sampleSize
+  const rootNumerator = diffSquaredSum - (diffSumSquared / sampleSize)
   const rootDenominator = sampleSize * (sampleSize - 1)
   const denominator = Math.sqrt(rootNumerator / rootDenominator)
   const t = numerator / denominator
@@ -80,7 +80,7 @@ function independentTValue (numbers, twoTailed = true) {
 
   const numerator = group1.mean - group2.mean
   const rootTerm1 = (group1.mm + group2.mm) / (group1.size + group2.size - 2)
-  const rootTerm2 = 1 / group1.size + 1 / group2.size
+  const rootTerm2 = (1 / group1.size) + (1 / group2.size)
   const denominator = Math.sqrt(rootTerm1 * rootTerm2)
   const t = numerator / denominator
 
@@ -100,9 +100,9 @@ function pairedTTest (numbers, marginOfError = 0.05, twoTailed = true) {
   const df = numbers[GROUP1_INDEX].length - 1
   const tCalc = pairedTValue(numbers, twoTailed)
   const tCrit = getTCrit(df, marginOfError)
-  const isSignificant = Math.abs(tCalc) > tCrit;
-  
-  return {calc: tCalc, crit: tCrit, isSignificant};
+  const isSignificant = Math.abs(tCalc) > tCrit
+
+  return { calc: tCalc, crit: tCrit, isSignificant }
 }
 
 /**
@@ -119,39 +119,39 @@ function independentTTest (numbers, marginOfError = 0.05, twoTailed = true) {
   const df = numbers[GROUP1_INDEX].length - 1 + numbers[GROUP2_INDEX].length
   const tCalc = independentTValue(numbers, twoTailed)
   const tCrit = getTCrit(df, marginOfError)
-  const isSignificant = Math.abs(tCalc) > tCrit;
-  
-  return {calc: tCalc, crit: tCrit, isSignificant};
+  const isSignificant = Math.abs(tCalc) > tCrit
+
+  return { calc: tCalc, crit: tCrit, isSignificant }
 }
 
-function joinLeftRightData(leftData, rightData) {
+function joinLeftRightData (leftData, rightData) {
   if (leftData.length !== rightData.length) {
-    throw 'Data arrays with different sizes';
+    throw new Error('Data arrays with different sizes')
   }
 
-  const data = [];
+  const data = []
   for (let i = 0; i < leftData.length; i++) {
     if (typeof leftData[i] !== 'number' || typeof rightData[i] !== 'number') {
-      throw 'Data arrays must contain only numbers';
+      throw new Error('Data arrays must contain only numbers')
     }
 
     data.push({
       right: rightData[i],
       left: leftData[i]
-    });
+    })
   }
-  return data;
+  return data
 }
 
-function getPearsonNumerator(data, leftSum, rightSum) {
-  const multipliedSum = data.reduce((sum, current) => current.left * current.right + sum, 0);
+function getPearsonNumerator (data, leftSum, rightSum) {
+  const multipliedSum = data.reduce((sum, current) => current.left * current.right + sum, 0)
   // console.log('Multiplied data sum:', multipliedSum);
 
-  return multipliedSum - (leftSum * rightSum / data.length);
+  return multipliedSum - (leftSum * rightSum / data.length)
 }
 
-function getPearsonDenominator(data, leftSum, rightSum, squaredLeftSum, squaredRightSum) {
-  return Math.sqrt(squaredLeftSum - square(leftSum) / data.length) * Math.sqrt(squaredRightSum - square(rightSum) / data.length);
+function getPearsonDenominator (data, leftSum, rightSum, squaredLeftSum, squaredRightSum) {
+  return Math.sqrt(squaredLeftSum - square(leftSum) / data.length) * Math.sqrt(squaredRightSum - square(rightSum) / data.length)
 }
 
 /**
@@ -163,26 +163,26 @@ function getPearsonDenominator(data, leftSum, rightSum, squaredLeftSum, squaredR
  * @returns {Number} The pearson correlation between the two data arrays (number between -1 and 1)
  */
 function pearsonR (leftData, rightData) {
-  const leftSum = sum(leftData);
+  const leftSum = sum(leftData)
   // console.log('Left data sum:', leftSum);
-  const rightSum = sum(rightData);
+  const rightSum = sum(rightData)
   // console.log('Right data sum:', rightSum);
-  const squaredLeftSum = squaredSum(leftData);
+  const squaredLeftSum = squaredSum(leftData)
   // console.log('Left squared data sum:', squaredLeftSum);
-  const squaredRightSum = squaredSum(rightData);
+  const squaredRightSum = squaredSum(rightData)
   // console.log('Right squared data sum:', squaredRightSum);
-  const data = joinLeftRightData(leftData, rightData);
+  const data = joinLeftRightData(leftData, rightData)
 
-  const denominator = getPearsonDenominator(data, leftSum, rightSum, squaredLeftSum, squaredRightSum);
+  const denominator = getPearsonDenominator(data, leftSum, rightSum, squaredLeftSum, squaredRightSum)
   // console.log('Denominator:', denominator);
   if (!denominator) {
-    throw 'No correlated data';
+    throw new Error('No correlated data')
   }
 
-  const numerator = getPearsonNumerator(data, leftSum, rightSum);
+  const numerator = getPearsonNumerator(data, leftSum, rightSum)
   // console.log('Numerator:', numerator);
 
-  return numerator / denominator;
+  return numerator / denominator
 }
 
 export {
